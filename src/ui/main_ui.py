@@ -17,6 +17,7 @@ from src.ui.diagram_ui import render_diagram_tab
 from src.ui.quiz_ui import render_quiz_tab
 from src.ui.analytics_ui import render_analytics_tab
 from src.ui.search_ui import render_search_tab
+from src.ui.eval_ui import render_eval_tab
 
 def render_main_ui():
     # ── Session state init ────────────────────────────────────────────────────
@@ -84,15 +85,16 @@ def render_main_ui():
                 f'</div>', unsafe_allow_html=True)
 
     # ── Tabs ──────────────────────────────────────────────────────────────────
-    tab_qa, tab_diagram, tab_summary, tab_search, tab_quiz, tab_analytics, tab_about = st.tabs([
-        "💬 Q&A Chat",
-        "🗺️ Diagrams",
-        "📋 Summary",
-        "🔍 Search",
-        "📝 Quiz",
-        "📊 Analytics",
-        "ℹ️ About"
-    ])
+    tab_qa, tab_diagram, tab_summary, tab_search, tab_quiz, tab_analytics, tab_eval, tab_about = st.tabs([
+    "💬 Q&A Chat",
+    "🗺️ Diagrams",
+    "📋 Summary",
+    "🔍 Search",
+    "📝 Quiz",
+    "📊 Analytics",
+    "🎯 Evaluate",
+    "ℹ️ About"
+])
 
     with tab_qa:
         render_chat(vs, simple_mode=simple_mode, use_api=use_api)
@@ -115,6 +117,9 @@ def render_main_ui():
         
     with tab_about:
         _render_about()
+    with tab_eval:
+        render_eval_tab(vs, processed_docs, use_api)
+
 
 
 # ══ Summary tab ════════════════════════════════════════════════════════════════

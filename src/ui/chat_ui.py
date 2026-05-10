@@ -182,6 +182,7 @@ def render_chat(vs: DocuMindVectorStore, simple_mode: bool, use_api: bool):
                 "role":    "assistant",
                 "content": result["answer"],
                 "sources": result["sources"],
+                "context": result["context"],
                 "mode":    result["mode"]
             })
             st.session_state["chat_history"] = chat_history
